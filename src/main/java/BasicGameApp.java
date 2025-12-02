@@ -86,9 +86,16 @@ public class BasicGameApp extends GameApplication {
         && ball.getBottomY() >= paddle1.getY()) {
 
         }
+
+        if (ball.getRightX() == paddle2.getX()
+        && ball.getY() < paddle2.getBottomY()
+        && ball.getBottomY() > paddle2.getY()) {
+            ball.setProperty("velocity", new Point2D(-velocity));
+        }
     }
 
     private void resetBall() {
-
+        ball.setPosition(getAppWidth() / 2 - BALL_SIZE / 2, getAppHeight() / 2 - BALL_SIZE / 2);
+        ball.setProperty("velocity", new Point2D(BALL_SPEED, BALL_SPEED));
     }
 }
