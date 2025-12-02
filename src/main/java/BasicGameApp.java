@@ -1,7 +1,10 @@
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.entity.Entity;
+import com.sun.javafx.geom.Point2D;
 import javafx.scene.input.KeyCode;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
@@ -65,5 +68,27 @@ public class BasicGameApp extends GameApplication {
         getInput().addAction(down1, KeyCode.S);
         OurAction down2 = new OurAction("Down 2", paddle1, PADDLE_SPEED);
         getInput().addAction(down2, KeyCode.DOWN);
+    }
+
+    @Override
+    protected  void initPhysics() {
+        CollideAction action = new CollideAction();
+        onCollisionBegin(BasicGameType.BALL, BasicGameType.BRICK, action);
+    }
+
+    @Override
+    protected void onUpdate(double tpf) {
+        Point2D velocity = ball.getObject("velocity");
+        ball.translate(velocity);
+
+        if (ball.getX() == paddle1.getRightX()
+        && ball.getY() < paddle1.getBottomY()
+        && ball.getBottomY() >= paddle1.getY()) {
+
+        }
+    }
+
+    private void resetBall() {
+
     }
 }
