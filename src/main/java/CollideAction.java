@@ -1,5 +1,5 @@
 import com.almasb.fxgl.entity.Entity;
-import com.sun.javafx.geom.Point2D;
+import javafx.geometry.Point2D;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 
@@ -15,10 +15,10 @@ public class CollideAction implements Function2<Entity, Entity, Unit> {
         Point2D velocity = ball.getObject("velocity");
 
         if (random.nextBoolean()) {
-            Point2D newVelocity = new Point2D(-velocity.x, velocity.y);
+            Point2D newVelocity = new Point2D(-velocity.getX(), velocity.getY());
             ball.setProperty("velocity", newVelocity);
         } else  {
-            Point2D newVelocity = new Point2D(velocity.x, -velocity.y);
+            Point2D newVelocity = new Point2D(velocity.getX(), -velocity.getX());
             ball.setProperty("velocity", newVelocity);
         }
 
